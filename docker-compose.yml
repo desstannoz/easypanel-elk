@@ -15,8 +15,6 @@ services:
         hard: -1
     volumes:
       - elasticsearch-data:/usr/share/elasticsearch/data
-    ports:
-      - 9200:9200
 
   logstash:
     image: docker.elastic.co/logstash/logstash:7.9.3
