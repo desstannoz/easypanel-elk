@@ -20,7 +20,7 @@ services:
       - XPACK_MONITORING_ENABLED=false
     volumes:
       - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro
-      - logstashdata01:/usr/share/logstash/data
+      - logstashdata:/usr/share/logstash/data
     ports:
       - 5044:5044
     depends_on:
@@ -35,6 +35,6 @@ services:
       - elasticsearch
 
 volumes:
-  logstashdata01:
+  logstashdata:
 
 
