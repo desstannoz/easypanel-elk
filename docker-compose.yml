@@ -1,5 +1,3 @@
-version: '3.7'
-
 name: elasticsearch-logstash-kibana
 services:
   elasticsearch:
@@ -13,8 +11,6 @@ services:
       memlock:
         soft: -1
         hard: -1
-    volumes:
-      - elasticsearch-data:/usr/share/elasticsearch/data
 
   logstash:
     image: docker.elastic.co/logstash/logstash:7.9.3
@@ -22,7 +18,6 @@ services:
       - XPACK_MONITORING_ENABLED=false
     volumes:
       - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro
-      - logstashdata01:/usr/share/logstash/data
     ports:
       - 5044:5044
     depends_on:
@@ -32,12 +27,5 @@ services:
     image: docker.elastic.co/kibana/kibana:7.9.3
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
-    volumes:
-      - kibanadata:/usr/share/kibana/data
     depends_on:
       - elasticsearch
-
-volumes:
-  elasticsearch-data:
-  kibanadata:
-  logstashdata01:
